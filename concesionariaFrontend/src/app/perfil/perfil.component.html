@@ -1,0 +1,59 @@
+<div *ngIf="confirmacion" class="alert alert-success mt-3" role="alert">
+    {{msjConfirmacion}}
+</div>
+<div class="row">
+<div id="carouselExampleIndicators" class="carousel slide m-2 " data-ride="carousel" style="width: 60%;">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" *ngFor="let img of vehiculo.imagenes" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img [src]= 'img' class="d-block w-100" alt="...">
+      </div>
+        <div *ngFor="let img of vehiculo.imagenes" class="carousel-item ">
+        <img  [src]= "img.ubicacion" class="d-block w-100" [alt]="img.nombreImg" >
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Siguiente</span>
+    </a>
+  </div>
+  <div class="card mt-2 ml-2" style="width: 18rem;">
+      <div class="card-header">
+        Detalles
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item font-weight-bold">año: <span class="text-muted font-weight-normal">{{vehiculo.anioCreacion}}</span></li>
+        <li class="list-group-item font-weight-bold">kilometros: <span class="text-muted font-weight-normal">{{vehiculo.kilometraje}}</span></li>
+        <li class="list-group-item font-weight-bold">disponibles: <span class="text-muted font-weight-normal">{{vehiculo.stock}}</span></li>
+        <li class="list-group-item font-weight-bold" *ngIf="vehiculo.tipoVehiculo == 'moto'">cilindrada: <span class="text-muted font-weight-normal">{{vehiculo.cilindrada}}cc</span></li>
+        <li class="list-group-item font-weight-bold" *ngIf="vehiculo.tipoVehiculo == 'auto'">puertas: <span class="text-muted font-weight-normal">{{vehiculo.numeroPuertas}}</span></li>
+        <li class="list-group-item font-weight-bold" *ngIf="vehiculo.tipoVehiculo == 'auto'">combustible: <span class="text-muted font-weight-normal">{{vehiculo.combustible}}</span></li>
+        <li class="list-group-item font-weight-bold" *ngIf="vehiculo.tipoVehiculo == 'camion'">cantidad de acoplados: <span class="text-muted font-weight-normal">{{vehiculo.numeroCoplados}}</span></li>
+        <li class="list-group-item font-weight-bold" *ngIf="vehiculo.tipoVehiculo == 'camion'">carga maxima: <span class="text-muted font-weight-normal">{{vehiculo.cargaMaxima}}kg</span></li>
+        <li class="list-group-item font-weight-bold">precio: $<span class="text-muted font-weight-normal">{{vehiculo.precio}}</span></li>
+      </ul>
+    </div>
+</div>
+<div class="row mb-2">
+<button type="button" class="btn btn-info ml-2" (click)="agregarFavorito(vehiculo.idVehiculo, authService.cliente.id)">Agregar a favoritos</button>
+<button type="button" class="btn btn-primary ml-1" (click)="solicitud(vehiculo.idVehiculo, authService.cliente.id)">Pedir informacion</button>
+</div>
+<div class="pb-5">
+  <h4>Descripcion</h4>
+  <p class="text-primary">condicion: <span class="text-muted">{{vehiculo.condicion}}</span></p>
+  <div class="row ml-1">
+  <p class="text-primary mr-1">colores:</p>
+  <p *ngFor="let color of colores" class="text-muted">{{color.nombreColor}}/</p>
+</div>
+  <h5>{{vehiculo.tipoVehiculo}} {{vehiculo.marca.marca}}</h5>
+
+  <p>{{vehiculo.descripcion}}</p>
+  
+</div>

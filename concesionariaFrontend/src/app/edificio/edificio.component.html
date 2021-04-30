@@ -1,0 +1,98 @@
+<div *ngIf="confirmacion" class="alert alert-success mt-3" role="alert">
+        Se agrego la direccion
+        <a [routerLink]="['/cuenta']" routerLinkActive="router-link-active"  class="stretched-link">ver</a>
+    </div>
+<div class="row">
+    <div class="list-group col-sm-3 mt-5 ml-3">
+        <a href="#" class="list-group-item list-group-item-action active ">Cuenta</a>
+        <a class="list-group-item list-group-item-action" [routerLink]="['/solicitudes']">Solicitudes de informacion</a>
+        <a [routerLink]="['/favorito']" routerLinkActive="router-link-active"
+            class="list-group-item list-group-item-action">Favoritos</a>
+        <a [routerLink]="['/cuenta']" routerLinkActive="router-link-active"
+            class="list-group-item list-group-item-action">Mis datos</a>
+    </div>
+    <form class="mt-5" #edificioForm="ngForm">
+        <div class="row">
+            <div class="col">
+                <input [(ngModel)]="edificio.provincia" type="text" class="form-control" placeholder="Provincia"
+                    name="provincia" required #provincia="ngModel">
+            <div class="alert alert-danger" *ngIf="provincia.invalid && (provincia.touched)">
+                <div *ngIf="provincia.errors.required">
+                    campo requerido
+                </div>
+            </div>
+        </div>
+            <div class="col">
+                <input [(ngModel)]="edificio.ciudad" type="text" class="form-control" placeholder="Ciudad"
+                    name="ciudad" required #ciudad="ngModel">
+                    <div class="alert alert-danger" *ngIf="ciudad.invalid && (ciudad.touched)">
+                        <div *ngIf="ciudad.errors.required">
+                            campo requerido
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col">
+                <input [(ngModel)]="edificio.calle" type="text" class="form-control" placeholder="Calle" name="calle" required #calle="ngModel">
+                <div class="alert alert-danger" *ngIf="calle.invalid && (calle.touched)">
+                    <div *ngIf="calle.errors.required">
+                        campo requerido
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <input [(ngModel)]="edificio.entreCalleA" type="text" class="form-control" placeholder="Entre calle 1"
+                    name="entreCalleA" required #entreCalleA="ngModel">
+                    <div class="alert alert-danger" *ngIf="entreCalleA.invalid && (entreCalleA.touched)">
+                        <div *ngIf="entreCalleA.errors.required">
+                            campo requerido
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col">
+                <input [(ngModel)]="edificio.entreCalleB" type="text" class="form-control" placeholder="Entre calle 2"
+                    name="entreCalleB" required #entreCalleB="ngModel">
+                    <div class="alert alert-danger" *ngIf="entreCalleB.invalid && (entreCalleB.touched)">
+                        <div *ngIf="entreCalleB.errors.required">
+                            campo requerido
+                        </div>
+                    </div>
+            </div>
+            <div class="col">
+                <input [(ngModel)]="edificio.altura" type="number" class="form-control" placeholder="Altura"
+                    name="altura" required #altura="ngModel">
+                    <div class="alert alert-danger" *ngIf="altura.invalid && (altura.touched)">
+                        <div *ngIf="altura.errors.required">
+                            campo requerido
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col">
+                <input [(ngModel)]="edificio.pisoEdificio" type="number" class="form-control" placeholder="Piso"
+                    name="piso" required #piso="ngModel">
+                    <div class="alert alert-danger" *ngIf="piso.invalid && (piso.touched)">
+                        <div *ngIf="piso.errors.required">
+                            campo requerido
+                        </div>
+                    </div>
+            </div>
+            <div class="col">
+                <input [(ngModel)]="edificio.numeroDepartamento" type="number" class="form-control"
+                    placeholder="N° departamento" name="departamento" required #departamento="ngModel">
+                    <div class="alert alert-danger" *ngIf="departamento.invalid && (departamento.touched)">
+                        <div *ngIf="departamento.errors.required">
+                            campo requerido
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-outline-info mt-3 mb-5 btn-block"
+            (click)="saveDireccionEdificio()" [disabled]="!edificioForm.form.valid">Guardar</button>
+    </form>
+
+</div>

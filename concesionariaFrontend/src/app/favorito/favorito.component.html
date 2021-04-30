@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="list-group col-sm-3 mt-5 ml-3">
+        <a href="#" class="list-group-item list-group-item-action active ">Cuenta</a>
+        <a class="list-group-item list-group-item-action" [routerLink]="['/solicitudes']" routerLinkActive="router-link-active" >Solicitudes de informacion</a>
+        <a [routerLink]="['/favorito']" routerLinkActive="router-link-active"
+            class="list-group-item list-group-item-action">Favoritos</a>
+        <a [routerLink]="['/cuenta']" routerLinkActive="router-link-active"
+            class="list-group-item list-group-item-action">Mis datos</a>
+
+    </div>
+    <div class="mt-5">
+        <ul class="list-unstyled">
+            <li class="media mb-3" *ngFor="let vehiculo of cliente.vehiculosFav">
+              <img  [src]= "vehiculo.imagenes[0].ubicacion" class="mr-3" style="width: 155px;">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">{{vehiculo.tipoVehiculo}} {{vehiculo.marca.marca}}</h5>
+                <p>${{vehiculo.precio}}</p>
+                <a [routerLink]="['/vehiculo', vehiculo.idVehiculo]" routerLinkActive="router-link-active" >Ver vehiculo</a>
+          </div>
+          <button type="button" class="close ml-5" (click)="eliminarFavorito(vehiculo.idVehiculo, authService.cliente.id)" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </li>
+          </ul>
+    </div>
+</div>

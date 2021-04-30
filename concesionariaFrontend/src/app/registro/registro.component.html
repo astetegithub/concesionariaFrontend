@@ -1,0 +1,78 @@
+<h1>Registro</h1>
+<div class="col-5">
+<form (ngSubmit)="registro()" #clienteForm="ngForm">
+    <div class="form-group">
+        <label for="formGroupExampleInput">Usuario</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.usuario"  placeholder="Ingresar usuario" name="usuario" required #usuario="ngModel" minlength="4">
+        <div class="alert alert-danger" *ngIf="usuario.invalid && (usuario.dirty || usuario.touched)"> 
+          <div *ngIf="usuario.errors.required">
+              El usuario es requerido
+          </div>
+          <div *ngIf="usuario.errors.minlength">
+            Tiene que tener como minimo 4 caracteres
+        </div>
+        </div> 
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control"  [(ngModel)]="cliente.email" aria-describedby="emailHelp" placeholder="Ingresar email" name="email" required #email="ngModel" email>
+      <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)"> 
+        <div *ngIf="email.errors.required">
+            Email requerido
+        </div>
+        <div *ngIf="email.errors.email">
+         Email invalido
+      </div>
+    </div>
+  </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" [(ngModel)]="cliente.password"  placeholder="Password" name="password" required minlength="8" #password="ngModel">
+      <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)"> 
+        <div *ngIf="password.errors.required">
+            Campo requerido
+        </div>
+        <div *ngIf="password.errors.minlength">
+          Tiene que tener como minimo 8 caracteres
+      </div>
+      </div> 
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.nombre"  placeholder="Ingresar nombre" name="nombre" required minlength="4" #nombre="ngModel">
+        <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"> 
+          <div *ngIf="nombre.errors.required">
+              El nombre es requerido
+          </div>
+          <div *ngIf="nombre.errors.minlength">
+            Tiene que tener como minimo 4 caracteres
+        </div>
+        </div>  
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput">Apellido paterno</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.apellidoA"  placeholder="Ingresar apellido" name="apellidoPaterno" required minlength="4" #apellidoPaterno="ngModel">
+        <div class="alert alert-danger" *ngIf="apellidoPaterno.invalid && (apellidoPaterno.dirty || apellidoPaterno.touched)"> 
+          <div *ngIf="apellidoPaterno.errors.required">
+              El apellido es requerido
+          </div>
+          <div *ngIf="apellidoPaterno.errors.minlength">
+            Tiene que tener como minimo 4 caracteres
+        </div>
+        </div>  
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput">Apellido materno</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.apellidoB"  placeholder="Ingresar apellido" name="apellidoMaterno" required minlength="4" #apellidoMaterno="ngModel">
+        <div class="alert alert-danger" *ngIf="apellidoMaterno.invalid && (apellidoMaterno.dirty || apellidoMaterno.touched)"> 
+          <div *ngIf="apellidoMaterno.errors.required">
+              El apellido es requerido
+          </div>
+          <div *ngIf="apellidoMaterno.errors.minlength">
+            Tiene que tener como minimo 4 caracteres
+        </div>
+        </div>  
+    </div>
+    <button type="submit" class="btn btn-primary" btn-block [disabled]="!clienteForm.form.valid">Registrarse</button>
+    </form>
+  </div>

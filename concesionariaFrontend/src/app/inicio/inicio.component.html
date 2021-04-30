@@ -1,0 +1,107 @@
+<h1>Buscador</h1>
+<div *ngIf="sinResultados == true" class="alert alert-danger" role="alert">
+ {{msjError}}
+</div>
+<div class="alert alert-info" role="alert">
+    valores de prueba:
+    
+  </div>
+<form class="m-5" (ngSubmit)= "buscador()" #buscadorForm="ngForm">
+    <div class="row">
+      <div class="col-auto my-1 w-50">
+        <span>Precio minimo</span>
+        <select class="custom-select mb-2 sm-2" [(ngModel)]="buscadorObj.precioMinimo" name="precioMinimo" required #precioMinimo="ngModel">
+            <option *ngFor="let precio of selectPrecios; let i = index" [value]="precio">${{precio}}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="precioMinimo.invalid && (precioMinimo.touched)"> 
+            <div *ngIf="precioMinimo.errors.required">
+                campo requerido
+            </div>
+          </div>
+          <span>Precio maximo</span>
+          <select class="custom-select" [(ngModel)]="buscadorObj.precioMaximo" name="precioMaximo" required #precioMaximo="ngModel">
+            <option *ngFor="let precio of selectPrecios" [value]="precio">${{precio}}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="precioMaximo.invalid && (precioMaximo.touched)"> 
+            <div *ngIf="precioMaximo.errors.required">
+                campo requerido
+            </div>
+          </div>
+      </div>
+      <div class="-col-auto my-1 w-50">
+        <span>Tipo</span>
+        <select class="custom-select mb-2 sm-2" [(ngModel)]="buscadorObj.tipo" name="tipo" required #tipo="ngModel">
+            <option *ngFor="let tipo of selectTipo" [value]="tipo">{{tipo}}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="tipo.invalid && (tipo.touched)"> 
+            <div *ngIf="tipo.errors.required">
+                campo requerido
+            </div>
+          </div>
+          <span>Condicion</span>
+          <select class="custom-select" [(ngModel)]="buscadorObj.condicion" name="condicion" required #condicion="ngModel">
+            <option *ngFor="let condicion of selectCondicion" [value]="condicion">{{condicion}}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="condicion.invalid && (condicion.touched)"> 
+            <div *ngIf="condicion.errors.required">
+                campo requerido
+            </div>
+          </div>
+      </div>
+      <div class="col-auto my-1 w-50">
+        <span>Kilometros minimos</span>
+        <select class="custom-select mb-2 sm-2" [(ngModel)]="buscadorObj.kmMinimo" name="kmMinimo" required #kmMinimo="ngModel">   
+            <option *ngFor="let kilometros of selectKm" [value]="kilometros">{{kilometros}}km</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="kmMinimo.invalid && (kmMinimo.touched)"> 
+            <div *ngIf="kmMinimo.errors.required">
+                campo requerido
+            </div>
+          </div>
+          <span>Kilometros maximos</span>
+          <select class="custom-select" [(ngModel)]="buscadorObj.kmMaximo" name="kmMaximo" required #kmMaximo="ngModel">
+            <option *ngFor="let kilometros of selectKm" [value]="kilometros">{{kilometros}}km</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="kmMaximo.invalid && (kmMaximo.touched)"> 
+            <div *ngIf="kmMaximo.errors.required">
+                campo requerido
+            </div>
+          </div>
+      </div>
+      <button type="submit" class="btn btn-dark w-50 ml-3 mt-3 " [disabled]="!buscadorForm.form.valid">Buscar</button>
+    </div>
+  </form>
+
+  <div class="row">
+    <div  *ngFor="let v of filtrados" class="card mb-2 ml-2" style="width: 17rem;">
+      <img  [src]= "v.imagenes[0].ubicacion" class="card-img-top">
+      <div class="card-body">
+        <h5>{{v.marca.marca}}</h5>
+        <h5>${{v.precio}}</h5>
+        <p class="card-text" style=color:#6F7261>{{v.anioCreacion}} | {{v.kilometraje}} km</p>
+        <button  type="button" [routerLink]="['/vehiculo', v.idVehiculo]" routerLinkActive="router-link-active"  class="btn btn-info" btn-lg btn-block >Ver vehiculo</button>
+      </div>
+    </div>
+    </div>
+
+
+    
+    <div class="modal" tabindex="-1" role="dialog" aria-hidden="false">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>

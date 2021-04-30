@@ -1,0 +1,14 @@
+<h5>Con el {{descuento}}% de descuento</h5>
+<div class="row">
+    <div  *ngFor="let v of vehiculos" class="card mb-2 ml-2" style="width: 17rem;">
+      <img  [src]= "v.imagenes[0].ubicacion" class="card-img-top">
+      <div class="card-body">
+        <h5>{{v.marca.marca}}</h5>
+        <h5>${{v.precioDescuento}}</h5>
+        <p class="card-text" style=color:#6F7261>{{v.anioCreacion}} | {{v.kilometraje}} km</p>
+        <p class="card-text" style="color:#5DC36B">{{v.descuento}}%</p>
+        <p class="card-text" style=color:#6F7261>precio anterior: ${{v.precio}}.-</p>
+        <button  type="button" [routerLink]="['/vehiculo', v.idVehiculo]" routerLinkActive="router-link-active"   class="btn btn-info" btn-lg btn-block>Ver vehiculo</button>
+      </div>
+    </div>
+    </div>

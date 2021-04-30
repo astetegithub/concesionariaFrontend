@@ -1,0 +1,19 @@
+<div class="row">
+<div class="list-group col-sm-3 mt-5 ml-3">
+    <a href="#" class="list-group-item list-group-item-action active ">Cuenta</a>
+    <a class="list-group-item list-group-item-action"  [routerLink]="['/solicitudes']">Solicitudes de informacion</a>
+    <a [routerLink]="['/favorito']" routerLinkActive="router-link-active"  class="list-group-item list-group-item-action">Favoritos</a>
+    <a [routerLink]="['/cuenta']" routerLinkActive="router-link-active"  class="list-group-item list-group-item-action">Mis datos</a>
+    
+  </div>
+  <ul class="list-group list-group-flush col-sm-5 mt-5">
+    <li class="list-group-item "><p class="font-weight-bold">Usuario</p> {{cliente.usuario}}</li>
+    <li class="list-group-item"><p class="font-weight-bold">Email</p> {{cliente.email}}</li>
+    <li class="list-group-item"><p class="font-weight-bold">Nombre y apellido</p> {{cliente.nombre}} {{cliente.apellidoA}} {{cliente.apellidoB}}</li>
+    <li class="list-group-item font-weight-bold">Direcciones</li>
+    <p *ngFor="let direccion of cliente.direcciones" class="text-muted ml-2">{{direccion.provincia}}, {{direccion.ciudad}}, {{direccion.calle}} {{direccion.altura}}
+      <span *ngIf="direccion.pisoEdificio">, piso {{direccion.pisoEdificio}}, dep. N°{{direccion.numeroDepartamento}}</span></p>
+    <button type="button" class="btn btn-outline-primary mb-1 mt-2 btn-sm" [routerLink]="['/direccion/individual']" routerLinkActive="router-link-active"  routerLinkActive="router-link-active" >Agregar direccion de una casa baja</button>  
+    <button type="button" class="btn btn-outline-primary mb-1 btn-sm" [routerLink]="['/direccion/edificio']">Agragar direccion de un departamento</button>
+  </ul>
+  </div>
